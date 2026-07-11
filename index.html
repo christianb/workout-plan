@@ -178,6 +178,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .ex-rest{font-size:11px;color:var(--accent);margin-top:2px;opacity:0.85}
 .ex-badge{flex-shrink:0;font-size:13px;font-weight:700;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:3px 10px;white-space:nowrap;font-variant-numeric:tabular-nums;transition:opacity 0.15s}
 .ex-row.done .ex-badge{opacity:.35}
+.load-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-top:3px;padding:1px 4px;border-radius:4px;transition:opacity 0.15s}
+.ex-row.done .load-lbl{opacity:.3}
+.wiki-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:10px}
+.wiki-hd{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;-webkit-user-select:none}
+.wiki-hd .wiki-arrow{transition:transform 0.2s;display:inline-block}
+.wiki-body{display:none;margin-top:12px}
+.wiki-body.open{display:block}
+.wiki-table{width:100%;border-collapse:collapse;font-size:12px}
+.wiki-table th{text-align:left;padding:4px 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);border-bottom:1px solid var(--border)}
+.wiki-table td{padding:7px 6px;border-bottom:0.5px solid var(--border);vertical-align:top;color:var(--text2);line-height:1.4}
+.wiki-table tr:last-child td{border-bottom:none}
+.wiki-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
 
 /* ── Reset button ── */
 .reset-btn{display:block;width:100%;padding:13px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--text3);font-size:13px;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;margin-bottom:12px}
@@ -465,10 +477,24 @@ function renderContent(){
     return "60s";
   }
 
+  function getLoadLabel(ex,secName){
+    if(secName==="Stretching") return null;
+    const r=ex.reps.toString();
+    if(r.includes("s")) return null;
+    if(secName==="Activation"||secName==="Rotator cuff") return {text:"Activation",c:"#6B9E8A"};
+    const n=parseInt(r);
+    if(n<=8)  return {text:"Heavy",    c:"#C94040"};
+    if(n<=12) return {text:"Moderate", c:"#C07030"};
+    if(n<=16) return {text:"Light-mod",c:"#9A7A10"};
+    if(n<=20) return {text:"Light",    c:"#3B8A5A"};
+    return           {text:"Pump",     c:"#5A7BA5"};
+  }
+
   function buildSec(sec,si){
     const rows=sec.ex.map((ex,ei)=>{
       const d=isDone(curWid,si,ei);
       const rt=getRestTime(ex,sec.name);
+      const ll=getLoadLabel(ex,sec.name);
       return `<div class="ex-row${d?' done':''}" onclick="toggle(${curWid},${si},${ei})" role="checkbox" aria-checked="${d}">
         <div class="ex-check"><div class="checkmark"></div></div>
         <div class="ex-info">
@@ -476,7 +502,10 @@ function renderContent(){
           ${ex.note?`<div class="ex-note">${ex.note}</div>`:''}
           ${rt?`<div class="ex-rest">⏱ ${rt} rest</div>`:''}
         </div>
-        <div class="ex-badge">${ex.sets}×${ex.reps}</div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+          <div class="ex-badge">${ex.sets}×${ex.reps}</div>
+          ${ll?`<div class="load-lbl" style="color:${ll.c}">${ll.text}</div>`:''}
+        </div>
       </div>`;
     }).join('');
     return `<div class="section-card">
@@ -563,8 +592,81 @@ function renderContent(){
     <button class="reset-btn" onclick="resetDay()">↺ Reset workout progress</button>
 
     ${muscleGrid}
-  `;
+
+    <div class="wiki-card">
+      <div class="wiki-hd" onclick="toggleWiki()">
+        <span>📖 Training guide</span>
+        <span class="wiki-arrow" id="wikiArrow">▼</span>
+      </div>
+      <div class="wiki-body" id="wikiBody">
+        <p style="font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.5">Each exercise has a load label based on its rep range. Here's what each means and how to pick your weight.</p>
+        <table class="wiki-table">
+          <thead><tr>
+            <th>Label</th><th>Reps</th><th>Weight feel</th><th>How many reps left in tank</th><th>Purpose</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="wiki-dot" style="background:#C94040"></span><strong style="color:#C94040">Heavy</strong></td>
+              <td>≤8</td>
+              <td>~80–90% of your max</td>
+              <td>1–2 reps left — near failure</td>
+              <td>Strength + maximum muscle tension</td>
+            </tr>
+            <tr>
+              <td><span class="wiki-dot" style="background:#C07030"></span><strong style="color:#C07030">Moderate</strong></td>
+              <td>9–12</td>
+              <td>~65–80% of your max</td>
+              <td>2–3 reps left — challenging</td>
+              <td>Primary hypertrophy zone — most growth here</td>
+            </tr>
+            <tr>
+              <td><span class="wiki-dot" style="background:#9A7A10"></span><strong style="color:#9A7A10">Light-mod</strong></td>
+              <td>13–16</td>
+              <td>~55–65% of your max</td>
+              <td>3–4 reps left — controlled</td>
+              <td>Hypertrophy + isolation work</td>
+            </tr>
+            <tr>
+              <td><span class="wiki-dot" style="background:#3B8A5A"></span><strong style="color:#3B8A5A">Light</strong></td>
+              <td>17–20</td>
+              <td>~45–55% of your max</td>
+              <td>5+ reps left — never near failure</td>
+              <td>Maintenance stimulus on non-Arms days</td>
+            </tr>
+            <tr>
+              <td><span class="wiki-dot" style="background:#5A7BA5"></span><strong style="color:#5A7BA5">Pump</strong></td>
+              <td>20+</td>
+              <td>~35–45% of your max</td>
+              <td>Comfortable throughout</td>
+              <td>Blood flow only — protects D7 recovery</td>
+            </tr>
+            <tr>
+              <td><span class="wiki-dot" style="background:#6B9E8A"></span><strong style="color:#6B9E8A">Activation</strong></td>
+              <td>—</td>
+              <td>Very light</td>
+              <td>Easy — not a working set</td>
+              <td>Rotator cuff warm-up before pressing</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:12px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Key rule — Arms day (D7)</div>
+          <p style="font-size:12px;color:var(--text2);line-height:1.5">D7 is your only true growth session. D1, D3 and D5 arm work is pump/maintenance only. If the light sessions start feeling hard, the weight is too high — drop it immediately.</p>
+        </div>
+        <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
+          <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Progressive overload</div>
+          <p style="font-size:12px;color:var(--text2);line-height:1.5">When you can complete all sets 2 reps above the target (e.g. 10 reps on a ×8 exercise), add 1–2.5kg next session. Track your weights every D7 Arms session.</p>
+        </div>
+      </div>
+    </div>`;
 }
+
+function toggleWiki(){
+  const b=document.getElementById('wikiBody');
+  const a=document.getElementById('wikiArrow');
+  if(b&&a){b.classList.toggle('open');a.style.transform=b.classList.contains('open')?'rotate(180deg)':'';}
+}
+window.toggleWiki=toggleWiki;
 
 renderTabs();
 renderContent();
