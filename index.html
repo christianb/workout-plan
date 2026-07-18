@@ -123,15 +123,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .header-top h1{font-size:17px;font-weight:700;letter-spacing:-0.3px}
 
 /* ── Day tabs ── */
-.day-tabs{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;padding-bottom:12px}
-.day-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 2px;border-radius:var(--radius-sm);border:none;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:50px;transition:background 0.12s}
+.day-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-bottom:12px;margin-left:auto;margin-right:auto}
+.day-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 2px;border-radius:var(--radius-sm);border:none;background:var(--surface2);color:var(--text3);cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:50px;transition:background 0.12s,color 0.12s}
 .day-tab.active{background:var(--accent)}
-.day-tab.inactive{background:var(--surface2)}
+.day-tab:not(.active){background:var(--surface2);color:var(--text3)}
+.day-tab:not(.active):hover{background:var(--accent);color:#fff}
 .day-tab.rest-day{background:transparent;cursor:default}
 .tab-lbl{font-size:10px;font-weight:600;color:var(--text)}
 .tab-sub{font-size:9px;color:var(--text3);margin-top:2px}
 .day-tab.active .tab-lbl,.day-tab.active .tab-sub{color:#fff}
-.day-tab.rest-day .tab-lbl,.day-tab.rest-day .tab-sub{color:var(--text3)}
 
 /* ── Content ── */
 .content{padding:12px 14px calc(var(--safe-bottom) + 24px);max-width:520px;margin:0 auto}
@@ -226,13 +226,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 <script>
 const SCHEDULE=[
   {label:"Day 1",wid:1,short:"Push"},
-  {label:"Day 2",wid:null,short:"Rest"},
   {label:"Day 3",wid:2,short:"Pull"},
-  {label:"Day 4",wid:null,short:"Rest"},
   {label:"Day 5",wid:4,short:"Legs"},
-  {label:"Day 6",wid:null,short:"Rest"},
   {label:"Day 7",wid:3,short:"Arms"},
-  {label:"Day 8",wid:null,short:"Rest"},
 ];
 
 const DAY_TYPES=['Push','Rest','Pull','Rest','Legs','Rest','Arms','Rest'];
@@ -442,10 +438,8 @@ function getProgress(wid){
 // ── Render ─────────────────────────────────────────────
 function renderTabs(){
   document.getElementById('dayTabs').innerHTML = SCHEDULE.map(d=>{
-    const isActive=d.wid===curWid, isRest=!d.wid;
-    const cls=isActive?'day-tab active':isRest?'day-tab rest-day':'day-tab inactive';
-    const click=isRest?'':` onclick="setDay(${d.wid})"`;
-    return `<button class="${cls}"${click} aria-label="${d.label}">
+    const isActive=d.wid===curWid;
+    return `<button class="day-tab${isActive?' active':''}" onclick="setDay(${d.wid})" aria-label="${d.label}">
       <span class="tab-lbl">${d.label}</span>
       <span class="tab-sub">${d.short}</span>
     </button>`;
