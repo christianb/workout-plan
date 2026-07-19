@@ -245,7 +245,7 @@ const MUSCLES=[
 // days[]: 0 = not trained · 1 = secondary/light · 2 = heavy/direct
 
 const W={
-  1:{title:"Push",duration:"~2h 40min",focus:["Chest","Shoulders","Triceps","Biceps","Abs"],warmup:"Stepper · 5 min",
+  1:{title:"Push",duration:"~2h 25min",focus:["Chest","Shoulders","Triceps","Biceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Activation",color:"#0F6E56",ex:[
         {name:"Standing shoulder external rotation",sets:2,reps:"15",note:"do before pressing — rotator cuff prep"},
@@ -255,14 +255,12 @@ const W={
         {name:"30° incline dumbbell bench press",sets:3,reps:"10"},
         {name:"Chest dips",sets:3,reps:"12"},
         {name:"Seated pec fly",sets:3,reps:"12"},
-        {name:"Dumbbell pullover",sets:3,reps:"12",note:"finisher — chest fully fatigued, maximises stretch stimulus"},
       ]},
       {name:"Shoulders",color:"#3B6D11",ex:[
         {name:"Standing barbell military press",sets:4,reps:"8",note:"replaces machine press — heavier compound, full stabilizer demand"},
         {name:"One-arm cable lateral raise",sets:2,reps:"15"},
       ]},
       {name:"Triceps",color:"#534AB7",ex:[
-        {name:"Cable rope overhead triceps extension",sets:2,reps:"15",note:"long head stretch — different from pushdown"},
         {name:"Triceps pushdown",sets:2,reps:"12",note:"lateral/medial — secondary only, triceps pre-fatigued by pressing"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
@@ -281,7 +279,7 @@ const W={
     ],
     cardio:"Treadmill · 20 min · 125–130bpm"},
 
-  2:{title:"Pull",duration:"~2h 40min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
+  2:{title:"Pull",duration:"~2h 30min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Back",color:"#185FA5",ex:[
         {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"10",note:"main compound"},
@@ -292,7 +290,6 @@ const W={
       ]},
       {name:"Rear delts & rotator cuff",color:"#0F6E56",ex:[
         {name:"Standing rope face pull",sets:3,reps:"15"},
-        {name:"Lever seated reverse fly (reverse grip)",sets:3,reps:"12"},
         {name:"Standing shoulder external rotation",sets:3,reps:"12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor"},
       ]},
       {name:"Biceps",color:"#534AB7",ex:[
@@ -315,7 +312,7 @@ const W={
     ],
     cardio:"Treadmill · 20 min · 125–130bpm"},
 
-  3:{title:"Arms",duration:"~3h 00min",focus:["Biceps","Triceps","Back","Forearms","Abs"],warmup:"Stepper · 5 min",
+  3:{title:"Arms",duration:"~2h 50min",focus:["Biceps","Triceps","Back","Forearms","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Biceps",color:"#534AB7",ex:[
         {name:"Seated EZ bar curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest"},
@@ -330,13 +327,11 @@ const W={
       ]},
       {name:"Back (light)",color:"#185FA5",ex:[
         {name:"Narrow grip seated row",sets:2,reps:"15",note:"30–40% less than Pull day"},
-        {name:"Lever seated reverse fly (reverse grip)",sets:2,reps:"15",note:"30–40% less than Pull day"},
         {name:"Standing cable lat pullover",sets:2,reps:"15",note:"pure lat isolation — no bicep involvement, stretch focused"},
       ]},
       {name:"Forearms",color:"#854F0B",ex:[
         {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"15",note:"extension"},
         {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"15",note:"flexion"},
-        {name:"Dead hang from pull-up bar",sets:3,reps:"30–45s",note:"grip endurance — rest 60s between sets"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
@@ -352,7 +347,7 @@ const W={
     ],
     cardio:"Treadmill · 20 min · 125–130bpm"},
 
-  4:{title:"Legs",duration:"~2h 35min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
+  4:{title:"Legs",duration:"~2h 30min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
         {name:"Seated leg press",sets:4,reps:"10",note:"main compound"},
@@ -370,7 +365,6 @@ const W={
       {name:"Shoulders (light)",color:"#3B6D11",ex:[
         {name:"Standing shoulder external rotation",sets:2,reps:"15"},
         {name:"Seated Arnold press",sets:2,reps:"15",note:"rotational press — trains all three delt heads through full arc"},
-        {name:"One-arm cable lateral raise",sets:2,reps:"15"},
         {name:"Standing rope face pull",sets:2,reps:"15"},
       ]},
       {name:"Chest (light)",color:"#185FA5",ex:[
