@@ -178,6 +178,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .ex-rest{font-size:11px;color:var(--accent);margin-top:2px;opacity:0.85}
 .ex-badge{flex-shrink:0;font-size:13px;font-weight:700;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:3px 10px;white-space:nowrap;font-variant-numeric:tabular-nums;transition:opacity 0.15s}
 .ex-row.done .ex-badge{opacity:.35}
+.warmup-badge{display:inline-flex;align-items:center;gap:3px;flex-shrink:0;font-size:10px;font-weight:700;color:#854F0B;background:rgba(133,79,11,0.12);border:1px solid rgba(133,79,11,0.3);border-radius:5px;padding:2px 6px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.3px;margin-left:6px;vertical-align:middle}
+.ex-row.done .warmup-badge{opacity:.35}
 .load-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-top:3px;padding:1px 4px;border-radius:4px;transition:opacity 0.15s}
 .ex-row.done .load-lbl{opacity:.3}
 .wiki-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:10px}
@@ -251,13 +253,13 @@ const W={
         {name:"Standing shoulder external rotation",sets:2,reps:"15",note:"do before pressing — rotator cuff prep"},
       ]},
       {name:"Chest",color:"#185FA5",ex:[
-        {name:"Horizontal barbell bench press",sets:4,reps:"8",note:"main compound"},
+        {name:"Horizontal barbell bench press",sets:4,reps:"8",note:"main compound",warmup:true},
         {name:"30° incline dumbbell bench press",sets:3,reps:"10"},
         {name:"Chest dips",sets:3,reps:"12"},
         {name:"Seated pec fly",sets:3,reps:"12"},
       ]},
       {name:"Shoulders",color:"#3B6D11",ex:[
-        {name:"Standing dumbbell Arnold press",sets:4,reps:"10",note:"heavy compound — rotational press trains all three delt heads through full arc"},
+        {name:"Standing dumbbell Arnold press",sets:4,reps:"10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true},
         {name:"One-arm cable lateral raise",sets:2,reps:"15"},
       ]},
       {name:"Triceps",color:"#534AB7",ex:[
@@ -282,7 +284,7 @@ const W={
   2:{title:"Pull",duration:"~2h 30min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Back",color:"#185FA5",ex:[
-        {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"10",note:"main compound"},
+        {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"10",note:"main compound",warmup:true},
         {name:"Close-grip underhand lat pulldown",sets:3,reps:"10",note:"lower lat emphasis — different from wide-grip Gravitron"},
         {name:"Narrow grip seated row",sets:3,reps:"10"},
         {name:"Dumbbell shrugs",sets:3,reps:"12"},
@@ -315,7 +317,7 @@ const W={
   3:{title:"Arms",duration:"~2h 50min",focus:["Biceps","Triceps","Back","Forearms","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Seated dumbbell curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top"},
+        {name:"Seated dumbbell curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top",warmup:true},
         {name:"Zottman bicep curl",sets:3,reps:"12",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
         {name:"One-arm dumbbell preacher curl",sets:3,reps:"12"},
       ]},
@@ -324,7 +326,7 @@ const W={
         {name:"Standing cable lat pullover",sets:2,reps:"15",note:"pure lat isolation — no bicep involvement, stretch focused; done before Triceps block so triceps aren't the limiting factor"},
       ]},
       {name:"Triceps",color:"#185FA5",ex:[
-        {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load"},
+        {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true},
         {name:"Overhead cable rope triceps extension",sets:3,reps:"12",note:"long head stretch — different angle from rope pushdown later in this block"},
         {name:"Parallel bar triceps dips",sets:3,reps:"12"},
         {name:"Triceps pushdown — rope attachment",sets:2,reps:"15",note:"isolation finisher"},
@@ -350,7 +352,7 @@ const W={
   4:{title:"Legs",duration:"~2h 30min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
-        {name:"Seated leg press",sets:4,reps:"10",note:"main compound"},
+        {name:"Seated leg press",sets:4,reps:"10",note:"main compound",warmup:true},
         {name:"Bulgarian split squat",sets:3,reps:"10 each leg",note:"rear foot elevated on bench — slow on the way down"},
         {name:"Seated leg extensions",sets:3,reps:"12"},
       ]},
@@ -483,7 +485,7 @@ function renderContent(){
       return `<div class="ex-row${d?' done':''}" onclick="toggle(${curWid},${si},${ei})" role="checkbox" aria-checked="${d}">
         <div class="ex-check"><div class="checkmark"></div></div>
         <div class="ex-info">
-          <div class="ex-name">${ex.name}</div>
+          <div class="ex-name">${ex.name}${ex.warmup?`<span class="warmup-badge">🔥 Warm-Up</span>`:''}</div>
           ${ex.note?`<div class="ex-note">${ex.note}</div>`:''}
           ${rt?`<div class="ex-rest">⏱ ${rt} rest</div>`:''}
         </div>
