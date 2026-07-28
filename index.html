@@ -51,14 +51,14 @@ HIGH-FREQUENCY ARM RULE: D1/D3/D5 arm work is pump/maintenance ONLY — 2 sets, 
 - One-arm cable lateral raise: Push day and Legs+Light day only. Removed from Arms and Pull days (redundant).
 - Leg day: all original exercises kept (user insisted). Inner adductor + leg abduction retained.
 - Legs+Light merged day: removed 30° incline bench and both abs exercises at user request. Kept all leg work + shoulder/back/chest light sections.
-- Oblique/rotational core: already in program (Pallof press, Side elbow plank with rotation). No additions needed.
+- Oblique/rotational core: already in program (Pallof press). No additions needed.
 - Flat/decline chest: already covered by Horizontal barbell bench press + Chest dips + Seated pec fly. No additions needed.
 - Chest additions (Jul 2026): Added Überzüge mit Kurzhantel oberer Griff (dumbbell pullover) 3x12 to Push day as finisher — provides long-stretch stimulus not achievable with pressing movements. Added Kabelzug über Kreuz stehend (standing cable crossover) 2x15 to Legs+Light day replacing seated pec fly — provides constant tension and peak contraction stimulus different from all Push day chest work.
 
 === ABS PER DAY ===
 Push (D1): Machine crunch 3x15 (flexion) + Pallof press 2x15 (rotation)
-Pull (D3): Machine crunch 2x15 (flexion) + Side elbow plank with rotation 2x15 (rotation)
-Arms (D7): Machine crunch 3x15 (flexion) + Side elbow plank with rotation 2x15 (rotation) + Pallof press 2x15 (rotation)
+Pull (D3): Machine crunch 2x15 (flexion) + Pallof press 2x15 (rotation)
+Arms (D7): Machine crunch 3x15 (flexion) + Pallof press 2x15 (rotation)
 Legs+Light (D5): No abs
 
 === WARMUP / CARDIO ===
@@ -300,7 +300,7 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion"},
-        {name:"Side elbow plank with rotation",sets:2,reps:"15",note:"rotation"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
       ]},
       {name:"Triceps (light)",color:"#185FA5",ex:[
         {name:"Single arm cable pushdown",sets:2,reps:"20",note:"pump only — 30–40% less than Arms day, never near failure"},
@@ -337,7 +337,6 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
-        {name:"Side elbow plank with rotation",sets:2,reps:"15",note:"rotation"},
         {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
@@ -380,7 +379,7 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion"},
-        {name:"Side elbow plank with rotation",sets:2,reps:"15",note:"rotation"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Low lunge with one arm raised",sets:1,reps:"45s",note:"hold each side"},
@@ -453,14 +452,14 @@ function renderContent(){
     if(secName==="Stretching") return null;
     if(secName==="Activation") return "30s";
     if(secName==="Rotator cuff") return "45s";
-    if(ex.note&&ex.note.includes("main compound")) return "2–3 min";
+    if(ex.note&&ex.note.includes("main compound")) return "2 min";
     const r=ex.reps.toString();
     if(r.includes("s")) return "60s";
-    if(r.includes("each")) return "2 min";
+    if(r.includes("each")) return "90s";
     const n=parseInt(r);
-    if(n<=8) return "2–3 min";
-    if(n<=10) return "2 min";
-    if(n<=12) return "90s";
+    if(n<=8) return "2 min";
+    if(n<=10) return "100s";
+    if(n<=12) return "75s";
     return "60s";
   }
 
@@ -485,11 +484,11 @@ function renderContent(){
       return `<div class="ex-row${d?' done':''}" onclick="toggle(${curWid},${si},${ei})" role="checkbox" aria-checked="${d}">
         <div class="ex-check"><div class="checkmark"></div></div>
         <div class="ex-info">
-          <div class="ex-name">${ex.name}${ex.warmup?`<span class="warmup-badge">🔥 Warm-Up</span>`:''}</div>
+          <div class="ex-name">${ex.name}</div>
           ${ex.note?`<div class="ex-note">${ex.note}</div>`:''}
-          ${rt?`<div class="ex-rest">⏱ ${rt} rest</div>`:''}
+          ${(rt||ex.warmup)?`<div class="ex-rest">${rt?`⏱ ${rt} rest`:''}${ex.warmup?`<span class="warmup-badge">🔥 Warm-Up</span>`:''}</div>`:''}
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+        <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:2px">
           <div class="ex-badge">${ex.sets}×${ex.reps}</div>
           ${ll?`<div class="load-lbl" style="color:${ll.c}">${ll.text}</div>`:''}
         </div>
