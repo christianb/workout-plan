@@ -180,6 +180,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .ex-row.done .ex-badge{opacity:.35}
 .warmup-badge{display:inline-flex;align-items:center;gap:3px;flex-shrink:0;font-size:10px;font-weight:700;color:#854F0B;background:rgba(133,79,11,0.12);border:1px solid rgba(133,79,11,0.3);border-radius:5px;padding:2px 6px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.3px;margin-left:6px;vertical-align:middle}
 .ex-row.done .warmup-badge{opacity:.35}
+.topset-badge{font-size:10px;font-weight:700;color:#C94040;background:rgba(201,64,64,0.12);border:1px solid rgba(201,64,64,0.3);border-radius:5px;padding:2px 6px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.3px}
+.ex-row.done .topset-badge{opacity:.35}
 .load-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-top:3px;padding:1px 4px;border-radius:4px;transition:opacity 0.15s}
 .ex-row.done .load-lbl{opacity:.3}
 .wiki-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:10px}
@@ -253,13 +255,13 @@ const W={
         {name:"Standing shoulder external rotation",sets:2,reps:"15",note:"do before pressing — rotator cuff prep"},
       ]},
       {name:"Chest",color:"#185FA5",ex:[
-        {name:"Horizontal barbell bench press",sets:4,reps:"8",note:"main compound",warmup:true},
+        {name:"Horizontal barbell bench press",sets:4,reps:"8",note:"main compound",warmup:true,topSet:true},
         {name:"30° incline dumbbell bench press",sets:3,reps:"10"},
         {name:"Chest dips",sets:3,reps:"12"},
         {name:"Seated pec fly",sets:3,reps:"12"},
       ]},
       {name:"Shoulders",color:"#3B6D11",ex:[
-        {name:"Standing dumbbell Arnold press",sets:4,reps:"10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true},
+        {name:"Standing dumbbell Arnold press",sets:4,reps:"10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true,topSet:true},
         {name:"One-arm cable lateral raise",sets:2,reps:"15"},
       ]},
       {name:"Triceps",color:"#534AB7",ex:[
@@ -284,7 +286,7 @@ const W={
   2:{title:"Pull",duration:"~2h 30min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Back",color:"#185FA5",ex:[
-        {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"10",note:"main compound",warmup:true},
+        {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"10",note:"main compound",warmup:true,topSet:true},
         {name:"Close-grip underhand lat pulldown",sets:3,reps:"10",note:"lower lat emphasis — different from wide-grip Gravitron"},
         {name:"Narrow grip seated row",sets:3,reps:"10"},
         {name:"Dumbbell shrugs",sets:3,reps:"12"},
@@ -317,7 +319,7 @@ const W={
   3:{title:"Arms",duration:"~2h 50min",focus:["Biceps","Triceps","Back","Forearms","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Seated dumbbell curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top",warmup:true},
+        {name:"Seated dumbbell curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top",warmup:true,topSet:true},
         {name:"Zottman bicep curl",sets:3,reps:"12",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
         {name:"One-arm dumbbell preacher curl",sets:3,reps:"12"},
       ]},
@@ -326,7 +328,7 @@ const W={
         {name:"Standing cable lat pullover",sets:2,reps:"15",note:"pure lat isolation — no bicep involvement, stretch focused; done before Triceps block so triceps aren't the limiting factor"},
       ]},
       {name:"Triceps",color:"#185FA5",ex:[
-        {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true},
+        {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true,topSet:true},
         {name:"Overhead cable rope triceps extension",sets:3,reps:"12",note:"long head stretch — different angle from rope pushdown later in this block"},
         {name:"Parallel bar triceps dips",sets:3,reps:"12"},
         {name:"Triceps pushdown — rope attachment",sets:2,reps:"15",note:"isolation finisher"},
@@ -351,7 +353,7 @@ const W={
   4:{title:"Legs",duration:"~2h 30min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
-        {name:"Seated leg press",sets:4,reps:"10",note:"main compound",warmup:true},
+        {name:"Seated leg press",sets:4,reps:"10",note:"main compound",warmup:true,topSet:true},
         {name:"Bulgarian split squat",sets:3,reps:"10 each leg",note:"rear foot elevated on bench — slow on the way down"},
         {name:"Seated leg extensions",sets:3,reps:"12"},
       ]},
@@ -490,6 +492,7 @@ function renderContent(){
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:2px">
           <div class="ex-badge">${ex.sets}×${ex.reps}</div>
+          ${ex.topSet?`<span class="topset-badge">Top Set</span>`:''}
           ${ll?`<div class="load-lbl" style="color:${ll.c}">${ll.text}</div>`:''}
         </div>
       </div>`;
@@ -638,6 +641,10 @@ function renderContent(){
         <div style="margin-top:12px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
           <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Key rule — Arms day (D7)</div>
           <p style="font-size:12px;color:var(--text2);line-height:1.5">D7 is your only true growth session. D1, D3 and D5 arm work is pump/maintenance only. If the light sessions start feeling hard, the weight is too high — drop it immediately.</p>
+        </div>
+        <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
+          <div style="font-size:11px;font-weight:700;color:#C94040;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Feeder Sets & Top Set</div>
+          <p style="font-size:12px;color:var(--text2);line-height:1.5">Exercises marked <strong>Top Set</strong> use a ramping structure: all sets except the last are Feeder Sets — lighter, building up in weight, with reps in reserve. The final set is the Top Set — your heaviest, closest to failure, and the one to track for progression.</p>
         </div>
         <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
           <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Progressive overload</div>
