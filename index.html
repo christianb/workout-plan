@@ -182,6 +182,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .ex-row.done .warmup-badge{opacity:.35}
 .topset-badge{font-size:10px;font-weight:700;color:#C94040;background:rgba(201,64,64,0.12);border:1px solid rgba(201,64,64,0.3);border-radius:5px;padding:2px 6px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.3px}
 .ex-row.done .topset-badge{opacity:.35}
+.superset-group{border:1.5px solid #0F8B8D;border-radius:10px;overflow:hidden;margin:8px 12px}
+.superset-group .ex-row{border-bottom:1px solid rgba(15,139,141,0.15);padding:11px 14px}
+.superset-group .ex-row:last-child{border-bottom:none}
+.superset-label{background:rgba(15,139,141,0.12);color:#0F8B8D;font-size:10px;font-weight:700;padding:5px 12px;text-transform:uppercase;letter-spacing:0.3px}
 .load-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-top:3px;padding:1px 4px;border-radius:4px;transition:opacity 0.15s}
 .ex-row.done .load-lbl{opacity:.3}
 .wiki-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:10px}
@@ -268,8 +272,8 @@ const W={
         {name:"Triceps pushdown",sets:2,reps:"12",note:"lateral/medial — secondary only, triceps pre-fatigued by pressing"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
+        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion",supersetWith:"Pallof press outward rotations",supersetRole:"first"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation",supersetWith:"Abdominal crunch (machine assisted)",supersetRole:"second"},
       ]},
       {name:"Biceps (light)",color:"#534AB7",ex:[
         {name:"Standing cable curl",sets:2,reps:"20",note:"pump only — 30–40% less than Arms day, never near failure"},
@@ -293,16 +297,16 @@ const W={
         {name:"Seated machine back extensions",sets:3,reps:"12"},
       ]},
       {name:"Rear delts & rotator cuff",color:"#0F6E56",ex:[
-        {name:"Standing shoulder external rotation",sets:3,reps:"12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor"},
-        {name:"Machine reverse fly",sets:3,reps:"15",note:"pure rear delt isolation — external rotation already covered above"},
+        {name:"Standing shoulder external rotation",sets:3,reps:"12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor",supersetWith:"Machine reverse fly",supersetRole:"first"},
+        {name:"Machine reverse fly",sets:3,reps:"15",note:"pure rear delt isolation — external rotation already covered above",supersetWith:"Standing shoulder external rotation",supersetRole:"second"},
       ]},
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Zottman bicep curl",sets:3,reps:"10",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
-        {name:"Dumbbell hammer curl — incline seated",sets:3,reps:"12",note:"targets brachialis — different emphasis from Arms day"},
+        {name:"Zottman bicep curl",sets:3,reps:"10",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement",supersetWith:"Dumbbell hammer curl — incline seated",supersetRole:"first"},
+        {name:"Dumbbell hammer curl — incline seated",sets:3,reps:"12",note:"targets brachialis — different emphasis from Arms day",supersetWith:"Zottman bicep curl",supersetRole:"second"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
+        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion",supersetWith:"Pallof press outward rotations",supersetRole:"first"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation",supersetWith:"Abdominal crunch (machine assisted)",supersetRole:"second"},
       ]},
       {name:"Triceps (light)",color:"#185FA5",ex:[
         {name:"Single arm cable pushdown",sets:2,reps:"20",note:"pump only — 30–40% less than Arms day, never near failure"},
@@ -320,26 +324,26 @@ const W={
     sections:[
       {name:"Biceps",color:"#534AB7",ex:[
         {name:"Seated dumbbell curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top",warmup:true,topSet:true},
-        {name:"Zottman bicep curl",sets:3,reps:"12",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
-        {name:"One-arm dumbbell preacher curl",sets:3,reps:"12"},
+        {name:"Zottman bicep curl",sets:3,reps:"12",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement",supersetWith:"One-arm dumbbell preacher curl",supersetRole:"first"},
+        {name:"One-arm dumbbell preacher curl",sets:3,reps:"12",supersetWith:"Zottman bicep curl",supersetRole:"second"},
       ]},
       {name:"Back (light)",color:"#185FA5",ex:[
-        {name:"Narrow grip seated row",sets:2,reps:"15",note:"30–40% less than Pull day"},
-        {name:"Standing cable lat pullover",sets:2,reps:"15",note:"pure lat isolation — no bicep involvement, stretch focused; done before Triceps block so triceps aren't the limiting factor"},
+        {name:"Narrow grip seated row",sets:2,reps:"15",note:"30–40% less than Pull day",supersetWith:"Standing cable lat pullover",supersetRole:"first"},
+        {name:"Standing cable lat pullover",sets:2,reps:"15",note:"pure lat isolation — no bicep involvement, stretch focused; done before Triceps block so triceps aren't the limiting factor",supersetWith:"Narrow grip seated row",supersetRole:"second"},
       ]},
       {name:"Triceps",color:"#185FA5",ex:[
         {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true,topSet:true},
         {name:"Overhead cable rope triceps extension",sets:3,reps:"12",note:"long head stretch — different angle from rope pushdown later in this block"},
-        {name:"Parallel bar triceps dips",sets:3,reps:"12"},
-        {name:"Triceps pushdown — rope attachment",sets:2,reps:"15",note:"isolation finisher"},
+        {name:"Parallel bar triceps dips",sets:3,reps:"12",supersetWith:"Triceps pushdown — rope attachment",supersetRole:"first"},
+        {name:"Triceps pushdown — rope attachment",sets:2,reps:"15",note:"isolation finisher",supersetWith:"Parallel bar triceps dips",supersetRole:"second"},
       ]},
       {name:"Forearms",color:"#854F0B",ex:[
-        {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"15",note:"extension"},
-        {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"15",note:"flexion"},
+        {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"15",note:"extension",supersetWith:"Single-arm dumbbell wrist curl (underhand)",supersetRole:"first"},
+        {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"15",note:"flexion",supersetWith:"Single-arm dumbbell reverse wrist curl (overhand)",supersetRole:"second"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
+        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion",supersetWith:"Pallof press outward rotations",supersetRole:"first"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation",supersetWith:"Abdominal crunch (machine assisted)",supersetRole:"second"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Overhead triceps stretch",sets:1,reps:"45s",note:"hold each side"},
@@ -362,13 +366,13 @@ const W={
       ]},
       {name:"Calves & adductors",color:"#534AB7",ex:[
         {name:"Calf raises",sets:2,reps:"20"},
-        {name:"Inner adductor workout",sets:2,reps:"15"},
-        {name:"Leg abduction with machine",sets:2,reps:"15"},
+        {name:"Inner adductor workout",sets:2,reps:"15",supersetWith:"Leg abduction with machine",supersetRole:"first"},
+        {name:"Leg abduction with machine",sets:2,reps:"15",supersetWith:"Inner adductor workout",supersetRole:"second"},
       ]},
       {name:"Shoulders (light)",color:"#3B6D11",ex:[
         {name:"Seated Arnold press",sets:2,reps:"15",note:"rotational press — trains all three delt heads through full arc"},
-        {name:"Standing shoulder external rotation",sets:2,reps:"15"},
-        {name:"Machine reverse fly",sets:2,reps:"15",note:"pure rear delt isolation — external rotation already covered above"},
+        {name:"Standing shoulder external rotation",sets:2,reps:"15",supersetWith:"Machine reverse fly",supersetRole:"first"},
+        {name:"Machine reverse fly",sets:2,reps:"15",note:"pure rear delt isolation — external rotation already covered above",supersetWith:"Standing shoulder external rotation",supersetRole:"second"},
       ]},
       {name:"Chest (light)",color:"#185FA5",ex:[
         {name:"Standing cable crossover",sets:2,reps:"15",note:"constant tension throughout — different stimulus from all Push day chest work"},
@@ -380,8 +384,8 @@ const W={
         {name:"Standing dumbbell triceps extension",sets:2,reps:"15",note:"pump only — different from Arms day exercises, never near failure"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
+        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion",supersetWith:"Pallof press outward rotations",supersetRole:"first"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation",supersetWith:"Abdominal crunch (machine assisted)",supersetRole:"second"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Low lunge with one arm raised",sets:1,reps:"45s",note:"hold each side"},
@@ -479,7 +483,7 @@ function renderContent(){
   }
 
   function buildSec(sec,si){
-    const rows=sec.ex.map((ex,ei)=>{
+    const rowsArr=sec.ex.map((ex,ei)=>{
       const d=isDone(curWid,si,ei);
       const rt=getRestTime(ex,sec.name);
       const ll=getLoadLabel(ex,sec.name);
@@ -488,7 +492,7 @@ function renderContent(){
         <div class="ex-info">
           <div class="ex-name">${ex.name}</div>
           ${ex.note?`<div class="ex-note">${ex.note}</div>`:''}
-          ${(rt||ex.warmup)?`<div class="ex-rest">${rt?`⏱ ${rt} rest`:''}${ex.warmup?`<span class="warmup-badge">🔥 Warm-Up</span>`:''}</div>`:''}
+          ${(!ex.supersetWith&&(rt||ex.warmup))?`<div class="ex-rest">${rt?`⏱ ${rt} rest`:''}${ex.warmup?`<span class="warmup-badge">🔥 Warm-Up</span>`:''}</div>`:''}
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:2px">
           <div class="ex-badge">${ex.sets}×${ex.reps}</div>
@@ -496,7 +500,20 @@ function renderContent(){
           ${ll?`<div class="load-lbl" style="color:${ll.c}">${ll.text}</div>`:''}
         </div>
       </div>`;
-    }).join('');
+    });
+    // group superset pairs into a bordered wrapper, with combined rest time in the label
+    let rows='';
+    for(let ei=0;ei<sec.ex.length;ei++){
+      const ex=sec.ex[ei];
+      if(ex.supersetWith&&ex.supersetRole==="first"){
+        const second=sec.ex[ei+1];
+        const groupRt=second?getRestTime(second,sec.name):null;
+        rows+=`<div class="superset-group"><div class="superset-label">⚡ Superset${groupRt?` · ⏱ ${groupRt} rest after`:''}</div>${rowsArr[ei]}${rowsArr[ei+1]||''}</div>`;
+        ei++; // skip the second exercise, already included
+      } else if(!(ex.supersetWith&&ex.supersetRole==="second")){
+        rows+=rowsArr[ei];
+      }
+    }
     return `<div class="section-card">
       <div class="sec-head">
         <span class="sec-dot" style="background:${sec.color}"></span>
@@ -641,6 +658,10 @@ function renderContent(){
         <div style="margin-top:12px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
           <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Key rule — Arms day (D7)</div>
           <p style="font-size:12px;color:var(--text2);line-height:1.5">D7 is your only true growth session. D1, D3 and D5 arm work is pump/maintenance only. If the light sessions start feeling hard, the weight is too high — drop it immediately.</p>
+        </div>
+        <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
+          <div style="font-size:11px;font-weight:700;color:#0F8B8D;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Supersets</div>
+          <p style="font-size:12px;color:var(--text2);line-height:1.5">Exercises marked <strong>⚡ Superset</strong> are done back-to-back with no rest in between, then you rest after both. This saves time on light/isolation work — never used on Top Set exercises, which need full rest.</p>
         </div>
         <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
           <div style="font-size:11px;font-weight:700;color:#C94040;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Feeder Sets & Top Set</div>
