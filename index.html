@@ -335,7 +335,7 @@ const W={
       ]},
       {name:"Triceps",color:"#185FA5",ex:[
         {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true},
-        {name:"Parallel bar triceps dips",sets:3,reps:"12"},
+        {name:"Seated dip machine",sets:3,reps:"12",note:"weighted, fixed path — more controlled than free-hanging dips, easier on shoulder/elbow"},
         {name:"Overhead cable rope triceps extension",sets:3,reps:"12",note:"long head stretch"},
         {name:"Triceps pushdown — rope attachment",sets:2,reps:"15",note:"isolation finisher"},
       ]},
@@ -345,8 +345,8 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation",supersetWith:"Cable twist",supersetRole:"first"},
-        {name:"Cable twist",sets:2,reps:"15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it",supersetWith:"Pallof press outward rotations",supersetRole:"second"},
+        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
+        {name:"Lever kneeling twist",sets:2,reps:"15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Overhead triceps stretch",sets:1,reps:"45s",note:"hold each side"},
@@ -464,8 +464,8 @@ function renderContent(){
     if(secName==="Rotator cuff") return "45s";
     if(ex.note&&ex.note.includes("main compound")) return "2 min";
     const r=ex.reps.toString();
-    if(r.includes("s")) return "60s";
     if(r.includes("each")) return "90s";
+    if(/^\d+s$/.test(r)) return "60s";
     const n=parseInt(r);
     if(n<=8) return "2 min";
     if(n<=10) return "100s";
@@ -476,7 +476,7 @@ function renderContent(){
   function getLoadLabel(ex,secName){
     if(secName==="Stretching") return null;
     const r=ex.reps.toString();
-    if(r.includes("s")) return null;
+    if(/^\d+s$/.test(r)) return null;
     if(secName==="Activation"||secName==="Rotator cuff") return {text:"Activation",c:"#6B9E8A"};
     const n=parseInt(r);
     if(n<=8)  return {text:"Heavy",    c:"#C94040"};
