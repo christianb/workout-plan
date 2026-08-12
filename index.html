@@ -139,6 +139,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 /* ── Day header card ── */
 .day-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px}
 .day-header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.day-stats-row{display:flex;gap:16px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.day-stat{display:flex;flex-direction:column}
+.day-stat-num{font-size:16px;font-weight:700;color:var(--text)}
+.day-stat-lbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}
 .day-title{font-size:20px;font-weight:700;letter-spacing:-0.4px;margin-bottom:3px}
 .day-dur{font-size:12px;color:var(--text3)}
 .focus-pills{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
@@ -256,28 +260,28 @@ const W={
   1:{title:"Push",duration:"~2h 25min",focus:["Chest","Shoulders","Triceps","Biceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Activation",color:"#0F6E56",ex:[
-        {name:"Standing shoulder external rotation",sets:2,reps:"15",note:"do before pressing — rotator cuff prep"},
+        {name:"Standing shoulder external rotation",sets:2,reps:"12-15",note:"do before pressing — rotator cuff prep"},
       ]},
       {name:"Chest",color:"#185FA5",ex:[
-        {name:"Horizontal barbell bench press",sets:4,reps:"8",note:"main compound",warmup:true},
-        {name:"30° incline dumbbell bench press",sets:3,reps:"10"},
-        {name:"Assisted dip machine (wide grip, forward lean)",sets:3,reps:"12",note:"trackable via assistance level — lower assistance over time, same as Gravitron pull-ups; wide grip + forward lean biases chest over triceps"},
-        {name:"Seated pec fly",sets:3,reps:"12"},
+        {name:"Horizontal barbell bench press",sets:4,reps:"6-8",note:"main compound",warmup:true},
+        {name:"30° incline dumbbell bench press",sets:3,reps:"8-10"},
+        {name:"Assisted dip machine (wide grip, forward lean)",sets:3,reps:"10-12",note:"trackable via assistance level — lower assistance over time, same as Gravitron pull-ups; wide grip + forward lean biases chest over triceps"},
+        {name:"Seated pec fly",sets:3,reps:"10-12"},
       ]},
       {name:"Shoulders",color:"#3B6D11",ex:[
-        {name:"Standing dumbbell Arnold press",sets:4,reps:"10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true},
-        {name:"One-arm cable lateral raise",sets:2,reps:"15"},
+        {name:"Standing dumbbell Arnold press",sets:4,reps:"8-10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true},
+        {name:"One-arm cable lateral raise",sets:2,reps:"12-15"},
       ]},
       {name:"Triceps",color:"#534AB7",ex:[
-        {name:"Triceps pushdown",sets:2,reps:"12",note:"lateral/medial — secondary only, triceps pre-fatigued by pressing"},
+        {name:"Triceps pushdown",sets:2,reps:"10-12",note:"lateral/medial — secondary only, triceps pre-fatigued by pressing"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
-        {name:"Cable side bend",sets:2,reps:"15 each side",note:"lateral flexion — not covered by crunch or Pallof press; single low-pulley handle, bend sideways away from machine"},
+        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
+        {name:"Pallof press outward rotations",sets:2,reps:"12-15",note:"rotation"},
+        {name:"Cable side bend",sets:2,reps:"12-15 each side",note:"lateral flexion — not covered by crunch or Pallof press; single low-pulley handle, bend sideways away from machine"},
       ]},
       {name:"Biceps (light)",color:"#534AB7",ex:[
-        {name:"Standing cable curl",sets:2,reps:"20",note:"pump only — 30–40% less than Arms day, never near failure"},
+        {name:"Standing cable curl",sets:2,reps:"15-20",note:"pump only — 30–40% less than Arms day, never near failure"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Against wall chest stretch",sets:1,reps:"45s",note:"hold each side"},
@@ -291,27 +295,27 @@ const W={
   2:{title:"Pull",duration:"~2h 30min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Back",color:"#185FA5",ex:[
-        {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"10",note:"main compound",warmup:true},
-        {name:"Close-grip underhand lat pulldown",sets:3,reps:"10",note:"lower lat emphasis — different from wide-grip Gravitron"},
-        {name:"Narrow grip seated row",sets:3,reps:"10"},
-        {name:"Dumbbell shrugs",sets:3,reps:"12"},
-        {name:"Seated machine back extensions",sets:3,reps:"12"},
+        {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"8-10",note:"main compound",warmup:true},
+        {name:"Close-grip underhand lat pulldown",sets:3,reps:"8-10",note:"lower lat emphasis — different from wide-grip Gravitron"},
+        {name:"Narrow grip seated row",sets:3,reps:"8-10"},
+        {name:"Dumbbell shrugs",sets:3,reps:"10-12"},
+        {name:"Seated machine back extensions",sets:3,reps:"10-12"},
       ]},
       {name:"Rear delts & rotator cuff",color:"#0F6E56",ex:[
-        {name:"Standing shoulder external rotation",sets:3,reps:"12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor"},
-        {name:"Machine reverse fly",sets:3,reps:"15",note:"pure rear delt isolation — external rotation already covered above"},
+        {name:"Standing shoulder external rotation",sets:3,reps:"10-12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor"},
+        {name:"Machine reverse fly",sets:3,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Zottman bicep curl",sets:3,reps:"10",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
-        {name:"Dumbbell hammer curl — incline seated",sets:3,reps:"12",note:"targets brachialis — different emphasis from Arms day"},
+        {name:"Zottman bicep curl",sets:3,reps:"8-10",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
+        {name:"Dumbbell hammer curl — incline seated",sets:3,reps:"10-12",note:"targets brachialis — different emphasis from Arms day"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
-        {name:"Cable twist",sets:2,reps:"15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
+        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"12-15",note:"flexion"},
+        {name:"Pallof press outward rotations",sets:2,reps:"12-15",note:"rotation"},
+        {name:"Cable twist",sets:2,reps:"12-15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
       ]},
       {name:"Triceps (light)",color:"#185FA5",ex:[
-        {name:"Single arm cable pushdown",sets:2,reps:"20",note:"pump only — 30–40% less than Arms day, never near failure"},
+        {name:"Single arm cable pushdown",sets:2,reps:"15-20",note:"pump only — 30–40% less than Arms day, never near failure"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Latissimus dorsi back stretch",sets:1,reps:"45s"},
@@ -325,28 +329,28 @@ const W={
   3:{title:"Arms",duration:"~2h 50min",focus:["Biceps","Triceps","Back","Forearms","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Seated dumbbell curl",sets:3,reps:"8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top",warmup:true},
-        {name:"Zottman bicep curl",sets:3,reps:"12",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement",supersetWith:"One-arm dumbbell preacher curl",supersetRole:"first"},
-        {name:"One-arm dumbbell preacher curl",sets:3,reps:"12",supersetWith:"Zottman bicep curl",supersetRole:"second"},
+        {name:"Seated dumbbell curl",sets:3,reps:"6-8",note:"heavy bilateral loading — do this first while biceps are freshest; use neutral/hammer grip if wrists bother you at the top",warmup:true},
+        {name:"Zottman bicep curl",sets:3,reps:"10-12",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
+        {name:"One-arm dumbbell preacher curl",sets:3,reps:"10-12"},
       ]},
       {name:"Back (light)",color:"#185FA5",ex:[
-        {name:"Narrow grip seated row",sets:2,reps:"15",note:"30–40% less than Pull day",supersetWith:"Standing cable lat pullover",supersetRole:"first"},
-        {name:"Standing cable lat pullover",sets:2,reps:"15",note:"pure lat isolation — no bicep involvement, stretch focused; done before Triceps block so triceps aren't the limiting factor",supersetWith:"Narrow grip seated row",supersetRole:"second"},
+        {name:"Narrow grip seated row",sets:2,reps:"12-15",note:"30–40% less than Pull day"},
+        {name:"Standing cable lat pullover",sets:2,reps:"12-15",note:"pure lat isolation — no bicep involvement, stretch focused; done before Triceps block so triceps aren't the limiting factor"},
       ]},
       {name:"Triceps",color:"#185FA5",ex:[
-        {name:"Machine chest press (close/narrow grip)",sets:4,reps:"10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true},
-        {name:"Seated dip machine",sets:3,reps:"12",note:"weighted, fixed path — more controlled than free-hanging dips, easier on shoulder/elbow"},
-        {name:"Overhead cable rope triceps extension",sets:3,reps:"12",note:"long head stretch"},
-        {name:"Triceps pushdown — rope attachment",sets:2,reps:"15",note:"isolation finisher"},
+        {name:"Machine chest press (close/narrow grip)",sets:4,reps:"8-10",note:"heavy compound — do first while triceps/chest/shoulders fresh; fixed bar path keeps wrists neutral and safe under heavy load",warmup:true},
+        {name:"Overhead cable rope triceps extension",sets:3,reps:"10-12",note:"long head stretch — lighter breather between the two compound presses"},
+        {name:"Seated dip machine",sets:3,reps:"10-12",note:"weighted, fixed path — more controlled than free-hanging dips, easier on shoulder/elbow"},
+        {name:"Triceps pushdown — rope attachment",sets:2,reps:"12-15",note:"isolation finisher"},
       ]},
       {name:"Forearms",color:"#854F0B",ex:[
-        {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"15",note:"extension",supersetWith:"Single-arm dumbbell wrist curl (underhand)",supersetRole:"first"},
-        {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"15",note:"flexion",supersetWith:"Single-arm dumbbell reverse wrist curl (overhand)",supersetRole:"second"},
+        {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"12-15",note:"extension",supersetWith:"Single-arm dumbbell wrist curl (underhand)",supersetRole:"first"},
+        {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"12-15",note:"flexion",supersetWith:"Single-arm dumbbell reverse wrist curl (overhand)",supersetRole:"second"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
-        {name:"Lever kneeling twist",sets:2,reps:"15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
+        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
+        {name:"Pallof press outward rotations",sets:2,reps:"12-15",note:"rotation"},
+        {name:"Lever kneeling twist",sets:2,reps:"12-15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Overhead triceps stretch",sets:1,reps:"45s",note:"hold each side"},
@@ -360,36 +364,36 @@ const W={
   4:{title:"Legs",duration:"~2h 35min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
-        {name:"Seated leg press",sets:4,reps:"10",note:"main compound",warmup:true},
-        {name:"Bulgarian split squat",sets:3,reps:"10 each leg",note:"rear foot elevated on bench — slow on the way down"},
-        {name:"Seated leg extensions",sets:3,reps:"12"},
+        {name:"Seated leg press",sets:4,reps:"8-10",note:"main compound",warmup:true},
+        {name:"Bulgarian split squat",sets:3,reps:"8-10 each leg",note:"rear foot elevated on bench — slow on the way down"},
+        {name:"Seated leg extensions",sets:3,reps:"10-12"},
       ]},
       {name:"Hamstrings",color:"#0F6E56",ex:[
-        {name:"Prone leg curl machine",sets:5,reps:"10"},
+        {name:"Prone leg curl machine",sets:5,reps:"8-10"},
       ]},
       {name:"Calves & adductors",color:"#534AB7",ex:[
-        {name:"Calf raises",sets:2,reps:"20"},
-        {name:"Inner adductor workout",sets:2,reps:"15",supersetWith:"Leg abduction with machine",supersetRole:"first"},
-        {name:"Leg abduction with machine",sets:2,reps:"15",supersetWith:"Inner adductor workout",supersetRole:"second"},
+        {name:"Calf raises",sets:2,reps:"15-20"},
+        {name:"Inner adductor workout",sets:2,reps:"12-15",supersetWith:"Leg abduction with machine",supersetRole:"first"},
+        {name:"Leg abduction with machine",sets:2,reps:"12-15",supersetWith:"Inner adductor workout",supersetRole:"second"},
       ]},
       {name:"Shoulders (light)",color:"#3B6D11",ex:[
-        {name:"Seated Arnold press",sets:2,reps:"15",note:"rotational press — trains all three delt heads through full arc"},
-        {name:"Standing shoulder external rotation",sets:2,reps:"15"},
-        {name:"Machine reverse fly",sets:2,reps:"15",note:"pure rear delt isolation — external rotation already covered above"},
+        {name:"Seated Arnold press",sets:2,reps:"12-15",note:"rotational press — trains all three delt heads through full arc"},
+        {name:"Standing shoulder external rotation",sets:2,reps:"12-15"},
+        {name:"Machine reverse fly",sets:2,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
       {name:"Chest (light)",color:"#185FA5",ex:[
-        {name:"Standing cable crossover",sets:2,reps:"15",note:"constant tension throughout — different stimulus from all Push day chest work"},
+        {name:"Standing cable crossover",sets:2,reps:"12-15",note:"constant tension throughout — different stimulus from all Push day chest work"},
       ]},
       {name:"Biceps (light)",color:"#534AB7",ex:[
-        {name:"Seated hammer curl",sets:2,reps:"15",note:"pump only — different from Arms day exercises, never near failure"},
+        {name:"Seated hammer curl",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure"},
       ]},
       {name:"Triceps (light)",color:"#185FA5",ex:[
-        {name:"Standing dumbbell triceps extension",sets:2,reps:"15",note:"pump only — different from Arms day exercises, never near failure"},
+        {name:"Standing dumbbell triceps extension",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:2,reps:"15",note:"rotation"},
-        {name:"Cable side bend",sets:2,reps:"15 each side",note:"lateral flexion — not covered by crunch or Pallof press; single low-pulley handle, bend sideways away from machine"},
+        {name:"Abdominal crunch (machine assisted)",sets:2,reps:"12-15",note:"flexion"},
+        {name:"Pallof press outward rotations",sets:2,reps:"12-15",note:"rotation"},
+        {name:"Cable side bend",sets:2,reps:"12-15 each side",note:"lateral flexion — not covered by crunch or Pallof press; single low-pulley handle, bend sideways away from machine"},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Low lunge with one arm raised",sets:1,reps:"45s",note:"hold each side"},
@@ -435,9 +439,12 @@ function setDay(wid){
 }
 
 function getProgress(wid){
-  const w=W[wid]; let total=0,doneCount=0;
-  w.sections.forEach((s,si)=>s.ex.forEach((_,ei)=>{ total++; if(isDone(wid,si,ei)) doneCount++; }));
-  return {total,done:doneCount,pct:total>0?Math.round(doneCount/total*100):0};
+  const w=W[wid]; let total=0,doneCount=0,workEx=0,workSets=0;
+  w.sections.forEach((s,si)=>s.ex.forEach((ex,ei)=>{
+    total++; if(isDone(wid,si,ei)) doneCount++;
+    if(s.name!=="Stretching"){ workEx++; workSets+=ex.sets; }
+  }));
+  return {total,done:doneCount,pct:total>0?Math.round(doneCount/total*100):0,workEx,workSets};
 }
 
 // ── Render ─────────────────────────────────────────────
@@ -578,6 +585,10 @@ function renderContent(){
         <div class="focus-pills">${focusPills}</div>
       </div>
       ${dayNote}
+      <div class="day-stats-row">
+        <div class="day-stat"><span class="day-stat-num">${prog.workEx}</span><span class="day-stat-lbl">Exercises</span></div>
+        <div class="day-stat"><span class="day-stat-num">${prog.workSets}</span><span class="day-stat-lbl">Total Sets</span></div>
+      </div>
       <div class="prog-bar-wrap"><div class="prog-bar-fill" style="width:${prog.pct}%"></div></div>
       <div class="prog-text">${prog.done} of ${prog.total} exercises done · ${prog.pct}%</div>
     </div>
