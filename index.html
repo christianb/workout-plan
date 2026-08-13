@@ -48,7 +48,7 @@ HIGH-FREQUENCY ARM RULE: D1/D3/D5 arm work is pump/maintenance ONLY — 2 sets, 
 - Chest 2x per cycle: heavy Push day, light Legs+Light day (pec fly 2x15 only — incline bench removed from light day at user request).
 - Forearms: Dead hang pull-up bar on Arms day (3x30-45s, grip endurance — hand gripper alternative). Dumbbell pronation/supination removed from Pull day — not available in user's app and forearms already well covered on Arms day. No replacement needed.
 - Abs structure: every session = 1 flexion exercise + 1 rotation exercise. Arms day has 1 flexion + 2 rotations (dedicated abs day). Plank removed in favour of rotation coverage. No abs on Legs+Light day.
-- One-arm cable lateral raise: Push day and Legs+Light day only. Removed from Arms and Pull days (redundant).
+- Machine lateral raise: Push day (3 sets). One-arm cable lateral raise: Legs+Light day (2 sets) — added for 2nd weekly side delt frequency, since side delts get far less indirect volume from pressing than front delts do.
 - Leg day: all original exercises kept (user insisted). Inner adductor + leg abduction retained.
 - Legs+Light merged day: removed 30° incline bench and both abs exercises at user request. Kept all leg work + shoulder/back/chest light sections.
 - Oblique/rotational core: already in program (Pallof press). No additions needed.
@@ -270,7 +270,7 @@ const W={
       ]},
       {name:"Shoulders",color:"#3B6D11",ex:[
         {name:"Standing dumbbell Arnold press",sets:4,reps:"8-10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true},
-        {name:"One-arm cable lateral raise",sets:2,reps:"12-15"},
+        {name:"Machine lateral raise",sets:3,reps:"12-15",note:"cam-based resistance curve — fixed path, easier to isolate side delts"},
       ]},
       {name:"Triceps",color:"#534AB7",ex:[
         {name:"Triceps pushdown",sets:2,reps:"10-12",note:"lateral/medial — secondary only, triceps pre-fatigued by pressing"},
@@ -378,6 +378,7 @@ const W={
       ]},
       {name:"Shoulders (light)",color:"#3B6D11",ex:[
         {name:"Seated Arnold press",sets:2,reps:"12-15",note:"rotational press — trains all three delt heads through full arc"},
+        {name:"One-arm cable lateral raise",sets:2,reps:"12-15",note:"2nd weekly side delt hit — constant cable tension, different stimulus from Push day's machine version"},
         {name:"Standing shoulder external rotation",sets:2,reps:"12-15"},
         {name:"Machine reverse fly",sets:2,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
@@ -473,7 +474,8 @@ function renderContent(){
     const r=ex.reps.toString();
     if(r.includes("each")) return "90s";
     if(/^\d+s$/.test(r)) return "60s";
-    const n=parseInt(r);
+    const nums=r.match(/\d+/g).map(Number);
+    const n=Math.max(...nums);
     if(n<=8) return "2 min";
     if(n<=10) return "100s";
     if(n<=12) return "75s";
@@ -485,7 +487,8 @@ function renderContent(){
     const r=ex.reps.toString();
     if(/^\d+s$/.test(r)) return null;
     if(secName==="Activation"||secName==="Rotator cuff") return {text:"Activation",c:"#6B9E8A"};
-    const n=parseInt(r);
+    const nums=r.match(/\d+/g).map(Number);
+    const n=Math.max(...nums);
     if(n<=8)  return {text:"Heavy",    c:"#C94040"};
     if(n<=12) return {text:"Moderate", c:"#C07030"};
     if(n<=16) return {text:"Light-mod",c:"#9A7A10"};
