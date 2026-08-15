@@ -257,16 +257,15 @@ const MUSCLES=[
 // days[]: 0 = not trained · 1 = secondary/light · 2 = heavy/direct
 
 const W={
-  1:{title:"Push",duration:"~2h 25min",focus:["Chest","Shoulders","Triceps","Biceps","Abs"],warmup:"Stepper · 5 min",
+  1:{title:"Push",duration:"~2h 15min",focus:["Chest","Shoulders","Triceps","Biceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Activation",color:"#0F6E56",ex:[
         {name:"Standing shoulder external rotation",sets:2,reps:"12-15",note:"do before pressing — rotator cuff prep"},
       ]},
       {name:"Chest",color:"#185FA5",ex:[
         {name:"Horizontal barbell bench press",sets:4,reps:"6-8",note:"main compound",warmup:true},
-        {name:"30° incline dumbbell bench press",sets:3,reps:"8-10"},
+        {name:"30° incline dumbbell bench press",sets:3,reps:"10-12"},
         {name:"Assisted dip machine (wide grip, forward lean)",sets:3,reps:"10-12",note:"trackable via assistance level — lower assistance over time, same as Gravitron pull-ups; wide grip + forward lean biases chest over triceps"},
-        {name:"Seated pec fly",sets:3,reps:"10-12"},
       ]},
       {name:"Shoulders",color:"#3B6D11",ex:[
         {name:"Standing dumbbell Arnold press",sets:4,reps:"8-10",note:"heavy compound — rotational press trains all three delt heads through full arc",warmup:true},
@@ -292,12 +291,11 @@ const W={
     ],
     cardio:"Treadmill · 20 min · 125–130bpm"},
 
-  2:{title:"Pull",duration:"~2h 30min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
+  2:{title:"Pull",duration:"~2h 10min",focus:["Back","Rear delts","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Back",color:"#185FA5",ex:[
         {name:"Gravitron assisted wide-grip pull-ups",sets:4,reps:"8-10",note:"main compound",warmup:true},
-        {name:"Close-grip underhand lat pulldown",sets:3,reps:"8-10",note:"lower lat emphasis — different from wide-grip Gravitron"},
-        {name:"Narrow grip seated row",sets:3,reps:"8-10"},
+        {name:"Narrow grip seated row",sets:3,reps:"10-12"},
         {name:"Dumbbell shrugs",sets:3,reps:"10-12"},
         {name:"Seated machine back extensions",sets:3,reps:"10-12"},
       ]},
@@ -306,7 +304,6 @@ const W={
         {name:"Machine reverse fly",sets:3,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Zottman bicep curl",sets:3,reps:"8-10",note:"curl up supinated, rotate to pronated on the way down — trains biceps + brachioradialis in one movement"},
         {name:"Dumbbell hammer curl — incline seated",sets:3,reps:"10-12",note:"targets brachialis — different emphasis from Arms day"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
@@ -361,15 +358,15 @@ const W={
     ],
     cardio:"Treadmill · 20 min · 125–130bpm"},
 
-  4:{title:"Legs",duration:"~2h 35min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
+  4:{title:"Legs",duration:"~2h 30min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
         {name:"Seated leg press",sets:4,reps:"8-10",note:"main compound",warmup:true},
-        {name:"Bulgarian split squat",sets:3,reps:"8-10 each leg",note:"rear foot elevated on bench — slow on the way down"},
+        {name:"Bulgarian split squat",sets:3,reps:"10-12 each leg",note:"rear foot elevated on bench — slow on the way down"},
         {name:"Seated leg extensions",sets:3,reps:"10-12"},
       ]},
       {name:"Hamstrings",color:"#0F6E56",ex:[
-        {name:"Prone leg curl machine",sets:5,reps:"8-10"},
+        {name:"Prone leg curl machine",sets:5,reps:"10-12"},
       ]},
       {name:"Calves & adductors",color:"#534AB7",ex:[
         {name:"Calf raises",sets:2,reps:"15-20"},
@@ -379,11 +376,10 @@ const W={
       {name:"Shoulders (light)",color:"#3B6D11",ex:[
         {name:"Seated Arnold press",sets:2,reps:"12-15",note:"rotational press — trains all three delt heads through full arc"},
         {name:"One-arm cable lateral raise",sets:2,reps:"12-15",note:"2nd weekly side delt hit — constant cable tension, different stimulus from Push day's machine version"},
-        {name:"Standing shoulder external rotation",sets:2,reps:"12-15"},
         {name:"Machine reverse fly",sets:2,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
       {name:"Chest (light)",color:"#185FA5",ex:[
-        {name:"Standing cable crossover",sets:2,reps:"12-15",note:"constant tension throughout — different stimulus from all Push day chest work"},
+        {name:"Horizontal barbell bench press",sets:2,reps:"12-15",note:"light, technique-focused — 2nd weekly practice rep for the lift, standard grip (wrist-safer than close grip), well-rested from Push day"},
       ]},
       {name:"Biceps (light)",color:"#534AB7",ex:[
         {name:"Seated hammer curl",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure"},
@@ -488,7 +484,7 @@ function renderContent(){
     if(/^\d+s$/.test(r)) return null;
     if(secName==="Activation"||secName==="Rotator cuff") return {text:"Activation",c:"#6B9E8A"};
     const nums=r.match(/\d+/g).map(Number);
-    const n=Math.max(...nums);
+    const n=Math.min(...nums);
     if(n<=8)  return {text:"Heavy",    c:"#C94040"};
     if(n<=12) return {text:"Moderate", c:"#C07030"};
     if(n<=16) return {text:"Light-mod",c:"#9A7A10"};
