@@ -260,7 +260,7 @@ const W={
   1:{title:"Push",duration:"~2h 15min",focus:["Chest","Shoulders","Triceps","Biceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Activation",color:"#0F6E56",ex:[
-        {name:"Standing shoulder external rotation",sets:2,reps:"12-15",note:"do before pressing — rotator cuff prep"},
+        {name:"Standing shoulder external rotation",sets:2,reps:"12-15",note:"do before pressing — rotator cuff prep — alternate sides each set (e.g. right, left, right...)",altSides:true},
       ]},
       {name:"Chest",color:"#185FA5",ex:[
         {name:"Horizontal barbell bench press",sets:4,reps:"6-8",note:"main compound",warmup:true},
@@ -273,8 +273,8 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:4,reps:"12-15 each side",note:"rotation — even sets so both sides get equal work"},
-        {name:"Weighted dumbbell side bend",sets:3,reps:"12-15 each side",note:"lateral flexion — not covered by crunch or Pallof press; hold one dumbbell at your side, bend away from it; trackable weight, no grip-under-tension issue like cable"},
+        {name:"Pallof press outward rotations",sets:4,reps:"12-15",note:"rotation — alternate sides each set (e.g. right, left, right...)",altSides:true},
+        {name:"Weighted dumbbell side bend",sets:6,reps:"12-15",note:"lateral flexion — not covered by crunch or Pallof press; hold one dumbbell at your side, bend away from it; trackable weight, no grip-under-tension issue like cable — alternate sides each set (e.g. right, left, right...)",altSides:true},
       ]},
       {name:"Triceps",color:"#534AB7",ex:[
         {name:"Triceps pushdown",sets:2,reps:"10-12",note:"lateral/medial — secondary only, triceps pre-fatigued by pressing; done right after cable side bend — same cable station"},
@@ -300,7 +300,7 @@ const W={
         {name:"Seated machine back extensions",sets:3,reps:"10-12"},
       ]},
       {name:"Rear delts & rotator cuff",color:"#0F6E56",ex:[
-        {name:"Standing shoulder external rotation",sets:3,reps:"10-12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor"},
+        {name:"Standing shoulder external rotation",sets:4,reps:"10-12",note:"strength focus — heavier than Push day activation, trains infraspinatus/teres minor — alternate sides each set (e.g. right, left, right...)",altSides:true},
         {name:"Machine reverse fly",sets:3,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
       {name:"Biceps",color:"#534AB7",ex:[
@@ -308,8 +308,8 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:4,reps:"12-15 each side",note:"rotation — even sets so both sides get equal work"},
-        {name:"Lever kneeling twist",sets:3,reps:"12-15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
+        {name:"Pallof press outward rotations",sets:4,reps:"12-15",note:"rotation — alternate sides each set (e.g. right, left, right...)",altSides:true},
+        {name:"Lever kneeling twist",sets:4,reps:"12-15",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it — alternate sides each set (e.g. right, left, right...)",altSides:true},
       ]},
       {name:"Triceps (light)",color:"#185FA5",ex:[
         {name:"Single arm cable pushdown",sets:2,reps:"15-20",note:"pump only — 30–40% less than Arms day, never near failure"},
@@ -340,13 +340,13 @@ const W={
         {name:"Triceps pushdown — rope attachment",sets:2,reps:"12-15",note:"isolation finisher"},
       ]},
       {name:"Forearms",color:"#854F0B",ex:[
-        {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"12-15",note:"extension",supersetWith:"Single-arm dumbbell wrist curl (underhand)",supersetRole:"first"},
-        {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"12-15",note:"flexion",supersetWith:"Single-arm dumbbell reverse wrist curl (overhand)",supersetRole:"second"},
+        {name:"Single-arm dumbbell reverse wrist curl (overhand)",sets:2,reps:"12-15",note:"extension — alternate sides each set (e.g. right, left, right...)",supersetWith:"Single-arm dumbbell wrist curl (underhand)",supersetRole:"first",altSides:true},
+        {name:"Single-arm dumbbell wrist curl (underhand)",sets:2,reps:"12-15",note:"flexion — alternate sides each set (e.g. right, left, right...)",supersetWith:"Single-arm dumbbell reverse wrist curl (overhand)",supersetRole:"second",altSides:true},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:4,reps:"12-15 each side",note:"rotation — even sets so both sides get equal work"},
-        {name:"Lever kneeling twist",sets:3,reps:"12-15 each side",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it"},
+        {name:"Pallof press outward rotations",sets:4,reps:"12-15",note:"rotation — alternate sides each set (e.g. right, left, right...)",altSides:true},
+        {name:"Lever kneeling twist",sets:4,reps:"12-15",note:"dynamic rotation — produces the twist, unlike Pallof press which resists it — alternate sides each set (e.g. right, left, right...)",altSides:true},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Overhead triceps stretch",sets:1,reps:"45s",note:"hold each side"},
@@ -361,7 +361,7 @@ const W={
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
         {name:"Seated leg press",sets:4,reps:"8-10",note:"main compound",warmup:true},
-        {name:"Bulgarian split squat",sets:3,reps:"10-12 each leg",note:"rear foot elevated on bench — slow on the way down"},
+        {name:"Bulgarian split squat",sets:6,reps:"10-12",note:"rear foot elevated on bench — slow on the way down — alternate sides each set (e.g. right, left, right...) — heavier compound, no rest reduction despite alternating"},
         {name:"Seated leg extensions",sets:3,reps:"10-12"},
       ]},
       {name:"Hamstrings",color:"#0F6E56",ex:[
@@ -388,8 +388,8 @@ const W={
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
-        {name:"Pallof press outward rotations",sets:4,reps:"12-15 each side",note:"rotation — even sets so both sides get equal work"},
-        {name:"Weighted dumbbell side bend",sets:3,reps:"12-15 each side",note:"lateral flexion — not covered by crunch or Pallof press; hold one dumbbell at your side, bend away from it; trackable weight, no grip-under-tension issue like cable"},
+        {name:"Pallof press outward rotations",sets:4,reps:"12-15",note:"rotation — alternate sides each set (e.g. right, left, right...)",altSides:true},
+        {name:"Weighted dumbbell side bend",sets:6,reps:"12-15",note:"lateral flexion — not covered by crunch or Pallof press; hold one dumbbell at your side, bend away from it; trackable weight, no grip-under-tension issue like cable — alternate sides each set (e.g. right, left, right...)",altSides:true},
       ]},
       {name:"Stretching",color:"#7B8FA5",ex:[
         {name:"Low lunge with one arm raised",sets:1,reps:"45s",note:"hold each side"},
@@ -464,6 +464,7 @@ function renderContent(){
   function getRestTime(ex,secName){
     if(secName==="Stretching") return null;
     if(secName==="Activation") return "30s";
+    if(ex.altSides) return "45s";
     if(secName==="Rotator cuff") return "45s";
     if(ex.note&&ex.note.includes("main compound")) return "2 min";
     const r=ex.reps.toString();
