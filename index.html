@@ -43,8 +43,8 @@ HIGH-FREQUENCY ARM RULE: D1/D3/D5 arm work is pump/maintenance ONLY — 2 sets, 
 - Shoulder press additions (Jul 2026): Machine shoulder press replaced on Push day with Militärpresse stehend (standing barbell military press) 4x8 — heavier compound movement with full stabilizer demand. Machine shoulder press replaced on Legs+Light day with Arnold Press sitzend (seated Arnold press) 2x15 — rotational press training all three delt heads through full arc. Two genuinely different shoulder press stimuli across the cycle without adding session length.
 - Back additions (Jul 2026): Added Latzug mit engem Untergriff (close-grip underhand lat pulldown) 3x10 to Pull day — lower lat emphasis and supinated grip, genuinely different from wide-grip Gravitron. Added Überzüge am Seilzug stehend (standing cable lat pullover) 2x15 to Arms/Back light day — pure lat isolation with straight arms, no bicep involvement, stretch focused. Only back exercise in program that trains lat without elbow flexion.
 - Romanian deadlift replaced with Bulgarian split squat (user finds RDL boring).
-- Pull day biceps: Machine curl + Standing cable curl replaced with single Dumbbell hammer curl incline seated (3x12). Targets brachialis — different emphasis from Arms day bicep work. Standing cable curl later replaced with Zottman Bizeps-Curl (3x10) — trains biceps supinated on the way up and brachioradialis pronated on the way down, two stimuli in one movement.
-- Arms day biceps: Inside grip rope curl replaced with SZ-Curls sitzend / seated EZ bar curl (3x8) — adds heavy bilateral loading which was the biggest gap in bicep program. EZ bar placed first in bicep section while freshest. Order: EZ bar curl → incline dumbbell curl → preacher curl.
+- Pull day biceps: Machine curl + Standing cable curl replaced with single Dumbbell hammer curl incline seated (3x12). Targets brachialis — different emphasis from Arms day bicep work. Standing cable curl later replaced with Zottman Bizeps-Curl (3x10) — trains biceps supinated on the way up and brachioradialis pronated on the way down, two stimuli in one movement. (Aug 2026) Bicep swap: Zottman moved to Pull day, Dumbbell hammer curl moved to Arms day — keeps hammer curls at 2x/cycle (D5 pump + D7 heavy) instead of triple-covered, and gives Pull day the pronated-descent brachioradialis work it lacked.
+- Arms day biceps: Inside grip rope curl replaced with seated EZ bar curl (3x8) — heavy bilateral loading; rendered as Seated dumbbell curl in the data and done first while biceps are freshest. Order: Seated dumbbell curl (heavy bilateral) → Dumbbell hammer curl (brachialis, swapped in from Pull day Aug 2026) → One-arm dumbbell preacher curl (unilateral).
 - Chest 2x per cycle: heavy Push day, light Legs+Light day (pec fly 2x15 only — incline bench removed from light day at user request).
 - Forearms: Dead hang pull-up bar on Arms day (3x30-45s, grip endurance — hand gripper alternative). Dumbbell pronation/supination removed from Pull day — not available in user's app and forearms already well covered on Arms day. No replacement needed.
 - Abs structure: every session = 1 flexion exercise + 1 rotation exercise. Arms day has 1 flexion + 2 rotations (dedicated abs day). Plank removed in favour of rotation coverage. No abs on Legs+Light day.
@@ -81,7 +81,7 @@ All stretches chosen from exercises available in user's workout app. Hold each s
 - The muscle heatmap at the bottom shows: filled dot = heavy/direct, ring dot = secondary/light.
 - If user buys hand gripper: add alongside dead hang on Arms day.
 - Hand gripper protocol: user has adjustable GD Iron Grip (25-80kg). Use on D2, D4, D6 rest days. Warm-up set at 50% resistance x10 each hand. Working sets: 3x per hand, stop 2-3 reps short of failure. Rest 60-90s between sets. Full ROM — fingers fully extended between reps. Never on consecutive days. Watch for finger joint pain or morning stiffness as overload warning signs.
-- Grip weakness noted: during Pull day hammer curls at 10kg, wrist joints gave out before biceps fatigued. Dead hangs and gripper training are addressing this. Lifting straps are a legitimate short-term solution to avoid grip limiting bicep stimulus.
+- Grip weakness noted: during hammer curls at 10kg (then on Pull day, moved to Arms day Aug 2026), wrist joints gave out before biceps fatigued. Dead hangs and gripper training are addressing this. Lifting straps are a legitimate short-term solution to avoid grip limiting bicep stimulus.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -304,7 +304,7 @@ const W={
         {name:"Machine reverse fly",sets:3,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
       ]},
       {name:"Biceps",color:"#534AB7",ex:[
-        {name:"Dumbbell hammer curl — incline seated",sets:3,reps:"10-12",note:"targets brachialis — different emphasis from Arms day"},
+        {name:"Zottman bicep curl",sets:3,reps:"10-12",note:"trains biceps supinated on the way up + brachioradialis pronated on the way down — different emphasis from Arms day"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
         {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
@@ -327,7 +327,7 @@ const W={
     sections:[
       {name:"Biceps",color:"#534AB7",ex:[
         {name:"Seated dumbbell curl",sets:3,reps:"6-8",note:"heavy bilateral loading — do this first while biceps are freshest",warmup:true},
-        {name:"Zottman bicep curl",sets:3,reps:"10-12",note:"trains biceps + brachioradialis in one movement"},
+        {name:"Dumbbell hammer curl",sets:3,reps:"10-12",note:"neutral grip — brachialis + brachioradialis; compliments the supinated seated and preacher curls"},
         {name:"One-arm dumbbell preacher curl",sets:3,reps:"10-12"},
       ]},
       {name:"Back (light)",color:"#185FA5",ex:[
