@@ -276,37 +276,35 @@ const W={
     ],
     cardio:"Treadmill · 20 min · 125–130bpm"},
 
-  4:{title:"Legs",duration:"~2h 30min",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
+  4:{title:"Legs",duration:"~2h",focus:["Legs","Shoulders","Chest","Biceps","Triceps","Abs"],warmup:"Stepper · 5 min",
     sections:[
       {name:"Quads & glutes",color:"#185FA5",ex:[
         {name:"Seated leg press",sets:4,reps:"8-10",note:"main compound",warmup:true},
-        {name:"Bulgarian split squat",sets:6,reps:"10-12",note:"front foot further from bench, shallower depth, weight through heel — reported kneecap pain; alternate sides each set (e.g. right, left, right...) — heavier compound, no rest reduction despite alternating"},
-        {name:"Seated leg extensions",sets:3,reps:"10-12"},
+        {name:"Bulgarian split squat",sets:4,reps:"10-12",rest:"60s",note:"front foot further from bench, shallower depth, weight through heel — reported kneecap pain; alternate sides each set (e.g. right, left, right...) — heavier compound, no rest reduction despite alternating; 2 sets per leg, make them hard (2–3 RIR) — volume traded for intensity"},
+        {name:"Seated leg extensions",sets:2,reps:"10-12",rest:"60s"},
       ]},
       {name:"Hamstrings",color:"#0F6E56",ex:[
-        {name:"Prone leg curl machine",sets:5,reps:"10-12"},
+        {name:"Prone leg curl machine",sets:4,reps:"10-12",rest:"60s"},
       ]},
       {name:"Calves & adductors",color:"#534AB7",ex:[
-        {name:"Calf raises",sets:4,reps:"15-20"},
-        {name:"Inner adductor workout",sets:4,reps:"12-15",supersetWith:"Leg abduction with machine",supersetRole:"first"},
-        {name:"Leg abduction with machine",sets:4,reps:"12-15",supersetWith:"Inner adductor workout",supersetRole:"second"},
+        {name:"Calf raises",sets:3,reps:"15-20",rest:"45s"},
+        {name:"Inner adductor workout",sets:3,reps:"12-15",rest:"45s"},
+        {name:"Leg abduction with machine",sets:3,reps:"12-15",rest:"45s"},
       ]},
       {name:"Shoulders (light)",color:"#3B6D11",ex:[
         {name:"Seated Arnold press",sets:2,reps:"12-15",note:"rotational press — trains all three delt heads through full arc"},
         {name:"One-arm cable lateral raise",sets:2,reps:"12-15",note:"2nd weekly side delt hit — constant cable tension, different stimulus from Push day's machine version"},
-        {name:"Machine reverse fly",sets:2,reps:"12-15",note:"pure rear delt isolation — external rotation already covered above"},
+        {name:"Machine reverse fly",sets:2,reps:"12-15",note:"2nd rear delt hit per cycle — offsets the day's pressing volume; first cut if this day runs long again"},
       ]},
       {name:"Chest (light)",color:"#185FA5",ex:[
         {name:"Horizontal barbell bench press",sets:2,reps:"12-15",note:"light, technique-focused — 2nd weekly practice rep for the lift, standard grip (wrist-safer than close grip), well-rested from Push day"},
       ]},
-      {name:"Biceps (light)",color:"#534AB7",ex:[
-        {name:"Seated hammer curl",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure"},
-      ]},
-      {name:"Triceps (light)",color:"#185FA5",ex:[
-        {name:"Standing dumbbell triceps extension",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure"},
+      {name:"Arms (light)",color:"#534AB7",ex:[
+        {name:"Seated hammer curl",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure; dumbbell pair shared with the triceps extension, one station",supersetWith:"Standing dumbbell triceps extension",supersetRole:"first"},
+        {name:"Standing dumbbell triceps extension",sets:2,reps:"12-15",note:"pump only — different from Arms day exercises, never near failure",supersetWith:"Seated hammer curl",supersetRole:"second"},
       ]},
       {name:"Abs",color:"#993C1D",ex:[
-        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",note:"flexion"},
+        {name:"Abdominal crunch (machine assisted)",sets:3,reps:"12-15",rest:"45s",note:"flexion"},
         {name:"Pallof press outward rotations",sets:4,reps:"12-15",note:"rotation — alternate sides each set (e.g. right, left, right...)",altSides:true},
         {name:"Weighted dumbbell side bend",sets:4,reps:"12-15",note:"lateral flexion — not covered by crunch or Pallof press; trackable weight, no grip-under-tension issue like cable — alternate sides each set (e.g. right, left, right...)",altSides:true},
       ]},
@@ -382,10 +380,12 @@ function renderContent(){
 
   function getRestTime(ex,secName){
     if(secName==="Stretching") return null;
+    if(ex.rest) return ex.rest;
     if(secName==="Activation") return "30s";
     if(ex.altSides) return "45s";
     if(secName==="Rotator cuff") return "45s";
     if(ex.note&&ex.note.includes("main compound")) return "2 min";
+    if(secName.includes("(light)")) return "45s";
     const r=ex.reps.toString();
     if(r.includes("each")) return "90s";
     if(/^\d+s$/.test(r)) return "60s";
@@ -593,7 +593,7 @@ function renderContent(){
         </div>
         <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
           <div style="font-size:11px;font-weight:700;color:#0F8B8D;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Supersets</div>
-          <p style="font-size:12px;color:var(--text2);line-height:1.5">Exercises marked <strong>⚡ Superset</strong> are done back-to-back with no rest in between, then you rest after both. This saves time on light/isolation work — never used on your heaviest compound lifts, which need full rest.</p>
+          <p style="font-size:12px;color:var(--text2);line-height:1.5">Exercises marked <strong>⚡ Superset</strong> are done back-to-back with no rest in between, then you rest after both. This saves time on light/isolation work — never used on your heaviest compound lifts, which need full rest. A pair is only used when both movements work from the <strong>same station or the same free weights</strong> — never two machines you would have to hold at once, since that isn't realistic at peak hour. Any section marked <strong>(light)</strong> is capped at <strong>45s</strong> rest: pump and maintenance work recovers fast, so long rest there is wasted time.</p>
         </div>
         <div style="margin-top:8px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm)">
           <div style="font-size:11px;font-weight:700;color:#854F0B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">🔥 Warm-Up</div>
